@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { addRoom } from "../utils/ApiFunctions"
 import RoomTypeSelector from "../common/RoomTypeSelector"
+import { Link } from "react-router-dom"
 
 const AddRoom = () => {
 	const [newRoom, setNewRoom] = useState({
@@ -33,7 +34,6 @@ const AddRoom = () => {
 	}
 
 	const handleSubmit = async (e) => {
-		console.log("handleSubmit")
 		e.preventDefault()
 		try {
 			const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
@@ -51,7 +51,7 @@ const AddRoom = () => {
 		setTimeout(() => {
 			setSuccessMessage("")
 			setErrorMessage("")
-		}, 2000)
+		}, 3000)
 	}
 
 	return (
@@ -110,13 +110,13 @@ const AddRoom = () => {
 										src={imagePreview}
 										alt="Preview  room photo"
 										style={{ maxWidth: "400px", maxHeight: "400px" }}
-										className="mb-3"/>
+										className="mb-3"></img>
 								)}
 							</div>
 							<div className="d-grid gap-2 d-md-flex mt-2">
-								{/* <Link to={"/existing-rooms"} className="btn btn-outline-info">
+								<Link to={"/existing-rooms"} className="btn btn-outline-info">
 									Existing rooms
-								</Link> */}
+								</Link>
 								<button type="submit" className="btn btn-outline-primary ml-5">
 									Save Room
 								</button>
