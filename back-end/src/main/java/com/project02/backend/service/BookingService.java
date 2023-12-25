@@ -25,8 +25,8 @@ public class BookingService implements IBookingService {
 
     @Override
     public List<BookedRoom> getAllBookings() {
-        bookingRepository.findAll();
-        return null;
+       return bookingRepository.findAll();
+
     }
 
 
@@ -49,13 +49,14 @@ public class BookingService implements IBookingService {
 
     @Override
     public void cancelBooking(Long bookingId) {
+        bookingRepository.deleteById(bookingId);
 
     }
 
     @Override
     public BookedRoom findByBookingConfirmationCode(String confirmationCode) {
-        return bookingRepository.findByBookingConfirmationCode(confirmationCode);
-//                .orElseThrow(() -> new ResourceNotFoundException("No booking found with booking code :" + confirmationCode));
+        return bookingRepository.findByBookingConfirmationCode(confirmationCode)
+                .orElseThrow(() -> new ResourceNotFoundException("No booking found with booking code :" + confirmationCode));
 
     }
 
